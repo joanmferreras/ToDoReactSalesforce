@@ -25,19 +25,20 @@ Instead of point to static resource, you can point to something that looks like 
 ## Development: Local + Visualforce
 *You need two terminal windows open*, one for client and the other for ngrok.
 
-1. In terminal 1, run: `dev-server`. This runs the development server(webpack-dev-server) at port 2992.
+1. In terminal 1, run: `npm run dev-server`. This runs the development server(webpack-dev-server) at port 2992.
 2. In terminal 2, point ngrok to 2992 by running: `ngrok http 2992 --host-header="localhost:2992"`. You'll see ngrok w/ urls as shown below. Simpy use the **https** one.
 ![ngrok in terminal](https://i.imgur.com/kM4Xgjv.png)
-3. Open up the ToDoApp Visualforce page we installed on the org through the unmanaged package deployment. Update the javascript file's url to `<your ngrok's https url>/assets/mainMan.js`.
+3. Open up the ToDoApp Visualforce page we installed on the org . We installed this page through the unmanaged package deployment earlier. Update the javascript file's url to `<your ngrok's https url>/assets/mainMan.js`.
 4. Uncomment the script tag that will be used for development.
 5. Comment out the script tag below with the $Resource reference (this will be used for the final Production .js file)
+6. Now you are ready for making changes locally, saving them and seeing them in your VF page near real-time without having to build the project and uploading the static resource.
 
 
 ## Production (Visualforce)
 
 1. Generate the latest React app by running: `npm run build`
 2. This file will be created in the `assets` folder
-3. Upload the file to static resource
+3. Upload the file as a static resource
 4. Change the URL in your Visualforce to point to the newly uploaded static resource by `<script src="{!URLFOR($Resource.<your static resource name here>)}"/>`
 
 
